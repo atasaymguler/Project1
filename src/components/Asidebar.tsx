@@ -7,9 +7,9 @@ import { FaMoon } from "react-icons/fa6";
 import { FaSun } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../store/store";
-import { closeDarkTheme, openDarkTheme } from "../store/slice/appSlice";
+import { closeAsidebar, closeDarkTheme, openDarkTheme } from "../store/slice/appSlice";
 export default function Asidebar() {
-  const darkTheme = useSelector((state: RootState) => state.app.darkTheme);
+  const {darkTheme,asidebar} = useSelector((state: RootState) => state.app);
   const dispatch = useDispatch()
   const asidebarItems = [
     {
@@ -39,10 +39,10 @@ export default function Asidebar() {
     },
   ];
   return (
-    <aside className="bg-gray-100 dark:bg-gray-700 h-screen w-64 py-3 dark:text-gray-100  transition-all duration-300">
+    <aside className={`bg-gray-100 dark:bg-gray-700 h-screen w-64 py-3 dark:text-gray-100  transition-all duration-300 fixed ${asidebar ? "translate-x-0" : "-translate-x-64"} lg:static lg:translate-x-0`}>
       <div className="flex justify-between items-center gap-3 mt-2 pb-4 px-5 border-b dark:border-gray-100">
         <h1 className="text-3xl font-bold ">Logo</h1>
-        <button className="text-2xl lg:hidden font-bold hover:cursor-pointer">
+        <button onClick={()=> dispatch(closeAsidebar())} className="text-2xl lg:hidden font-bold hover:cursor-pointer">
           X
         </button>
       </div>

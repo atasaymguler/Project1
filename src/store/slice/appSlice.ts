@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export interface AppState {
   darkTheme: boolean;
+  asidebar: boolean;
 }
 
 const initialState: AppState = {
   darkTheme: false,
+  asidebar: false,
 };
 
 export const appSlice = createSlice({
@@ -18,9 +20,16 @@ export const appSlice = createSlice({
     closeDarkTheme: (state: AppState) => {
       state.darkTheme = false;
     },
+    openAsidebar: (state: AppState) => {
+      state.asidebar = true;
+    },
+    closeAsidebar: (state: AppState) => {
+      state.asidebar = false;
+    },
   },
 });
 
-export const { openDarkTheme, closeDarkTheme } = appSlice.actions;
+export const { openDarkTheme, closeDarkTheme, openAsidebar, closeAsidebar } =
+  appSlice.actions;
 
 export default appSlice.reducer;

@@ -1,10 +1,14 @@
 import { FaBars } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { openAsidebar } from "../store/slice/appSlice";
 export default function Navbar() {
+
+  const dispatch = useDispatch()
   
   return (
   
     <header className="flex justify-between items-center px-2 py-4 bg-gray-100 dark:text-gray-100  dark:bg-gray-700 transition-all duration-300">
-        <button className="hover:cursor-pointer  lg:hidden">
+        <button onClick={()=> dispatch(openAsidebar())} className="hover:cursor-pointer  lg:hidden">
           <FaBars className="text-2xl" />
         </button>
         <h1 className="text-2xl lg:text-3xl font-bold">
