@@ -5,7 +5,12 @@ import { CgDetailsLess } from "react-icons/cg";
 import { IoIosContacts } from "react-icons/io";
 import { FaMoon } from "react-icons/fa6";
 import { FaSun } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../store/store";
+import { closeDarkTheme, openDarkTheme } from "../store/slice/appSlice";
 export default function Asidebar() {
+  const darkTheme = useSelector((state: RootState) => state.app.darkTheme);
+  const dispatch = useDispatch()
   const asidebarItems = [
     {
       id: 1,
@@ -34,9 +39,9 @@ export default function Asidebar() {
     },
   ];
   return (
-    <aside className="bg-gray-100 h-screen w-64 py-3">
-      <div className="flex justify-between items-center gap-3 mt-2 pb-4 px-5 border-b">
-        <h1 className="text-3xl font-bold">Logo</h1>
+    <aside className="bg-gray-100 dark:bg-gray-700 h-screen w-64 py-3 dark:text-gray-100  transition-all duration-300">
+      <div className="flex justify-between items-center gap-3 mt-2 pb-4 px-5 border-b dark:border-gray-100">
+        <h1 className="text-3xl font-bold ">Logo</h1>
         <button className="text-2xl lg:hidden font-bold hover:cursor-pointer">
           X
         </button>
@@ -49,8 +54,11 @@ export default function Asidebar() {
           </div>
         ))}
         <div className="pl-2">
-          <FaMoon className="theme-button" />
-          <FaSun className="theme-button" />
+          {darkTheme ? (
+            <FaSun className="theme-button" onClick={()=> dispatch(closeDarkTheme())} />
+          ) : (
+            <FaMoon className="theme-button" onClick={()=> dispatch(openDarkTheme())} />
+          )}
         </div>
       </div>
     </aside>
