@@ -1,7 +1,9 @@
 import { FaBars } from "react-icons/fa";
 export default function Navbar() {
   return (
-    <header className="flex justify-between items-center px-2 py-4 bg-gray-200">
+    <div className="flex-1">
+
+    <header className="flex justify-between items-center px-2 py-4 bg-gray-100">
         <button className="hover:cursor-pointer  lg:hidden">
           <FaBars className="text-2xl" />
         </button>
@@ -12,5 +14,6 @@ export default function Navbar() {
 
         </div>
     </header>
+    </div>
   )
 }

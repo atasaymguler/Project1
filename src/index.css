@@ -1,1 +1,6 @@
 @import "tailwindcss";
+@layer components{
+    .theme-button{
+       @apply text-4xl text-amber-500 bg-gray-800 p-2 rounded-full
+    }
+}
